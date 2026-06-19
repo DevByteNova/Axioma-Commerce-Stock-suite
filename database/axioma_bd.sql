@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-06-2026 a las 01:06:51
+-- Tiempo de generación: 19-06-2026 a las 03:59:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,9 +31,17 @@ CREATE TABLE `clientes` (
   `ID_CLIENTE` int(11) NOT NULL,
   `NOMBRE` varchar(100) NOT NULL,
   `APELLIDOS` varchar(100) NOT NULL,
-  `DIRECCION` text DEFAULT NULL,
-  `TELEFONO` varchar(20) DEFAULT NULL
+  `DIRECCION` varchar(255) DEFAULT NULL,
+  `TELEFONO` varchar(20) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE`, `APELLIDOS`, `DIRECCION`, `TELEFONO`, `email`) VALUES
+(5, 'Juanito', 'Perez', 'Calle falsa 123, Bogota', '3001234567', 'juan@correo.com');
 
 -- --------------------------------------------------------
 
@@ -164,7 +172,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `facturas`

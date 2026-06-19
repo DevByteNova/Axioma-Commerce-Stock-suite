@@ -62,5 +62,5 @@ class Usuario {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
-} // <-- Esta llave cierra la clase al final de TODO el archivo
+} 
 ?>

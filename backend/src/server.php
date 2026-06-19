@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['action']) && $data['ac
             $_SESSION['id_cliente'] = $usuarioLogueado['ID_CLIENTE'];
             $_SESSION['id_vendedor'] = $usuarioLogueado['ID_VENDEDOR'];
             
-            // 🚨 AQUÍ ESTÁ: Le asignamos el rol que tu dashboard exige para dejarte entrar
+           // Asignar el rol del usuario a la sesión para control de acceso en el frontend
             $_SESSION['usuario_rol'] = 'Administrador'; 
 
             echo json_encode(["success" => true, "message" => "Autenticación exitosa."]);

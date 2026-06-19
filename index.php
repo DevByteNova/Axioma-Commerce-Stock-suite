@@ -1,13 +1,12 @@
 <?php
 // index.php (Raíz del proyecto Axioma)
 
-// 1. Iniciamos la sesión en la primera línea de todas
+//1. Iniciar sesión si no se ha hecho ya
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 🚪 2. MÓDULO LOGOUT: Aquí va lo segundo que te pasé.
-// Si el botón rojo manda la señal 'logout', este bloque limpia todo y te expulsa.
+// 2. Logout: Si se recibe la acción de logout, destruimos la sesión
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     $_SESSION = array(); 
     if (ini_get("session.use_cookies")) {
@@ -27,7 +26,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// 4. Tu sistema de rutas (Switch) de siempre
+//sistema de rutas simple (sin .htaccess ni frameworks)
 $route = isset($_GET['url']) ? $_GET['url'] : 'login';
 
 switch ($route) {

@@ -38,6 +38,38 @@ $nombre_usuario = $_SESSION['usuario_name'] ?? 'Administrador';
         </header>
 
         <main class="flex-1 p-6">
+            <?php
+            // 1. Conexión única al principio del main
+            require_once 'C:/xampp/htdocs/project/Axioma/backend/src/conexion.php'; 
+            $database = new Database();
+            $db = $database->getConnection();
+            ?>
+
+            <div class="max-w-4xl mx-auto mb-8">
+                <a href="http://localhost/project/Axioma/frontend/src/pages/clientes.php" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-200">
+                    <span class="mr-2">👥</span> Gestionar Clientes
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
+              <?php
+                $tables = ['clientes', 'productos', 'ventas'];
+                foreach ($tables as $t) {
+                    $stmt = $db->query("SELECT COUNT(*) FROM $t");
+                    $count = $stmt->fetchColumn();
+                    
+                    $link = ($t == 'clientes') ? 'href="clientes.php"' : '';
+                    $cursor = ($t == 'clientes') ? 'cursor-pointer hover:border-blue-500' : 'cursor-default';
+
+                    echo "
+                    <a $link class='block bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-all $cursor'>
+                        <h2 class='text-gray-500 text-xs uppercase font-bold tracking-wider'>Total $t</h2>
+                        <p class='text-3xl font-bold text-gray-800 mt-2'>$count</p>
+                    </a>";
+                }
+                ?>
+            </div>
+
             <div class="bg-white rounded-xl shadow-md p-6 max-w-4xl mx-auto mt-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-2">Tablas en la Base de Datos</h2>
                 <p class="text-gray-600 mb-6">Lista de tablas disponibles en tu sistema:</p>
@@ -45,13 +77,7 @@ $nombre_usuario = $_SESSION['usuario_name'] ?? 'Administrador';
                 <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
                     <ul class="space-y-3">
                         <?php
-                        // ¡IMPORTANTE!: Ajusta esta ruta a tu archivo de conexión real
-                       require_once 'C:/xampp/htdocs/project/Axioma/backend/src/conexion.php'; 
-                        
                         try {
-                            $database = new Database();
-                            $db = $database->getConnection();
-                            
                             $query = "SHOW TABLES";
                             $stmt = $db->prepare($query);
                             $stmt->execute();
@@ -75,7 +101,7 @@ $nombre_usuario = $_SESSION['usuario_name'] ?? 'Administrador';
                 </div>
             </div>
         </main>
-    </div>
 
+    </div>
 </body>
 </html>
