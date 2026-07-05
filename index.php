@@ -54,6 +54,14 @@ switch ($route) {
         require_once __DIR__ . '/frontend/src/pages/registro_admin.php';
         break;
 
+    case 'clientes':
+        if (!isset($_SESSION['usuario_id'])) {
+            header('Location: index.php?url=login');
+            exit;
+        }
+        require_once __DIR__ . '/frontend/src/pages/clientes.php';
+        break;
+
     default:
         require_once __DIR__ . '/frontend/src/pages/login.php';
         break;

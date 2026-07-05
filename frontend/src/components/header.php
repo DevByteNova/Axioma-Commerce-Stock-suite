@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Sistema Axioma</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-    <nav class="bg-blue-800 text-white p-4 mb-6">
-        <div class="container mx-auto">
-            <a href="clientes.php" class="font-bold">Axioma - Gestión</a>
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.php">Axioma</a>
         </div>
-    </nav>
+        <nav class="nav-menu">
+            <a href="index.php?url=dashboard">Dashboard</a>
+            <a href="clientes.php">Clientes</a>
+            <a href="facturas.php">Facturas</a>
+            <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
+        </nav>
+    </div>
+</header>

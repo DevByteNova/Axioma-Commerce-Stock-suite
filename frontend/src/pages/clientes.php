@@ -8,36 +8,42 @@ if(!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] !== 'Administrad
 require_once 'C:/xampp/htdocs/project/Axioma/backend/src/conexion.php';
 $database = new Database();
 $db = $database->getConnection();
-require_once '../components/header.php';    
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes - Axioma</title>
+    <link rel="stylesheet" href="../public/css/styles.css?v=1.1">
+</head>
+<body>
 
-<body class="bg-gray-100 p-8">
-    <div class="max-w-5xl mx-auto">
-        <a href="index.php?url=dashboard" class="text-blue-600 hover:underline mb-4 inline-block">← Volver al Dashboard</a>
-        
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold">Lista de Clientes</h1>
-            <a href="nuevo_cliente.php" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+<?php require_once '../components/header.php'; ?>
+    <div class="container">
+         <a href="/project/Axioma/index.php?url=dashboard">← Volver al Dashboard</a>
+
+        <div class="header-actions">
+            <h1>Lista de Clientes</h1>
+            <a href="nuevo_cliente.php" class="btn btn-primary">
                 ➕ Agregar Cliente
             </a>
         </div>
 
-        <div class="mb-6">
-            <input type="text" id="busqueda" placeholder="Buscar cliente..." 
-            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="busqueda-container">
+            <input type="text" id="busqueda" placeholder="Buscar cliente...">
         </div>
 
-        <div class="bg-white shadow rounded-lg overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                    <tr class="bg-gray-50">
-                       <th class="px-6 py-3 text-left">NOMBRE COMPLETO</th>
-                        <th class="px-6 py-3 text-left">EMAIL</th>
-                        <th class="px-6 py-3 text-left">DIRECCIÓN</th>
-                        <th class="px-6 py-3 text-left">TELÉFONO</th>
-                     </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200" id="cuerpoTabla">
+        <table>
+            <thead>
+                <tr>
+                    <th>NOMBRE COMPLETO</th>
+                    <th>EMAIL</th>
+                    <th>DIRECCIÓN</th>
+                    <th>TELÉFONO</th>
+                </tr>
+            </thead>
+<tbody id="cuerpoTabla">    
+                
     <?php
     // 1. Pones esta línea AQUÍ, donde antes tenías el SELECT *
     $stmt = $db->query("SELECT ID_CLIENTE, NOMBRE, APELLIDOS, email, DIRECCION, TELEFONO FROM clientes");
