@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['action']) && $data['ac
             $_SESSION['id_vendedor'] = $usuarioLogueado['ID_VENDEDOR'];
             
            // Asignar el rol del usuario a la sesión para control de acceso en el frontend
-            $_SESSION['usuario_rol'] = 'Administrador'; 
+            $_SESSION['usuario_rol'] = $usuarioLogueado['rol']; 
 
             echo json_encode(["success" => true, "message" => "Autenticación exitosa."]);
             exit;

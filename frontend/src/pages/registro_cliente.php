@@ -1,39 +1,38 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-50">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Axioma | Registro de Cliente</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/project/Axioma/frontend/src/public/css/styles.css">
 </head>
-<body class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
-    <div class="sm:mx-auto w-full max-w-md">
-        <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-slate-900">Crear cuenta de Cliente</h2>
-        <p class="mt-2 text-center text-sm text-slate-600">Únete a nuestra plataforma comercial</p>
-    </div>
+<body class="page-body">
+    <div class="form-shell">
+        <div class="form-card">
+            <h2>Crear cuenta de Cliente</h2>
+            <p class="form-subtitle">Únete a nuestra plataforma comercial</p>
 
-    <div class="mt-8 sm:mx-auto w-full max-w-md">
-        <div class="bg-white px-4 py-8 shadow-sm sm:rounded-lg sm:px-10 border border-slate-200">
-            <form id="registerForm" class="space-y-6">
-                <input type="hidden" id="rol" value="Cliente"> <div>
-                    <label class="block text-sm font-medium text-slate-700">Nombre Completo</label>
-                    <input type="text" id="nombre" required class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2">
+            <form id="registerForm" class="auth-form">
+                <input type="hidden" id="rol" value="Cliente">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="nombre" required>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Usuario</label>
-                    <input type="text" id="username" required class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" id="username" required>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Correo Electrónico</label>
-                    <input type="email" id="email" required class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2">
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="email" required>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Contraseña</label>
-                    <input type="password" id="password" required class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2">
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="password" required>
                 </div>
 
-                <div id="msg" class="hidden text-sm p-3 rounded-md"></div>
+                <div id="msg" class="message hidden"></div>
 
-                <button type="submit" class="w-full bg-slate-900 text-white py-2 rounded-md font-semibold hover:bg-slate-800">Registrarse</button>
+                <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
             </form>
         </div>
     </div>
@@ -56,13 +55,13 @@
             const data = await res.json();
             const msg = document.getElementById('msg');
             msg.textContent = data.message;
-            msg.classList.remove('hidden', 'bg-red-50', 'text-red-600', 'bg-green-50', 'text-green-600');
-            
+            msg.classList.remove('hidden');
+
             if(data.success) {
-                msg.classList.add('bg-green-50', 'text-green-600');
+                msg.classList.add('success');
                 setTimeout(() => window.location.href = 'index.php?url=login', 2000);
             } else {
-                msg.classList.add('bg-red-50', 'text-red-600');
+                msg.classList.add('error');
             }
         });
     </script>

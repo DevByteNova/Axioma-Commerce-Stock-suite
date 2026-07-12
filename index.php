@@ -61,7 +61,27 @@ switch ($route) {
         }
         require_once __DIR__ . '/frontend/src/pages/clientes.php';
         break;
-
+    case 'editar_producto':
+        require_once __DIR__ . '/frontend/src/pages/editar_producto.php';
+        break;
+    case 'eliminar_producto':
+        require_once __DIR__ . '/frontend/src/pages/eliminar_producto.php';
+        break;
+    case 'nueva_venta':
+        require_once __DIR__ . '/frontend/src/pages/nueva_venta.php';
+        break;
+    case 'dashboard':
+    if (!isset($_SESSION['usuario_id'])) {
+        header('Location: index.php?url=login');
+        exit;
+    }
+    
+    if ($_SESSION['usuario_rol'] === 'Vendedor') {
+        require_once 'frontend/src/pages/dashboard_vendedor.php';
+    } else {
+        require_once 'frontend/src/pages/dashboard_admin.php'; // Tu dashboard normal
+    }
+    break;
     default:
         require_once __DIR__ . '/frontend/src/pages/login.php';
         break;

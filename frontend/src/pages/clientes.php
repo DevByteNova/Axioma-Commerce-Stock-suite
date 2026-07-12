@@ -18,7 +18,6 @@ $db = $database->getConnection();
 </head>
 <body>
 
-<?php require_once '../components/header.php'; ?>
     <div class="container">
          <a href="/project/Axioma/index.php?url=dashboard">← Volver al Dashboard</a>
 
