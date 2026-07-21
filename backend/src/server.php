@@ -137,6 +137,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['action']) && $data['act
     exit;
 }
 
+// MODULO 6: LISTAR INVENTARIO
+require_once __DIR__ . '/models/Producto.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'listar_inventario') {
+    $database = new Database();
+    $prod = new Producto($database->getConnection());
+    echo json_encode($prod->listarTodos());
+    exit;
+}
 
 // Si la acción no coincide con ninguna anterior
 echo json_encode(["success" => false, "message" => "Acción no válida."]);

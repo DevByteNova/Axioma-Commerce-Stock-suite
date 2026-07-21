@@ -15,12 +15,12 @@ class Producto{
         $stmt->bindParam(':stock', $stock);
         return $stmt->execute();
     }
-    public function listarTodos(){
-        $query = "SELECT * FROM " . $this->table;
+    public function listarTodos() {
+        $query = "SELECT ID_PRODUCTO, nombre, DESCRIPCION, PRECIO, STOCK FROM productos";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+}
 }
 
 ?>

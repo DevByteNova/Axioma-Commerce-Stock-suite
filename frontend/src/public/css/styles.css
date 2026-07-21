@@ -17,25 +17,51 @@
 }
 
 body {
-    background-color: var(--bg-color);
+    background: linear-gradient(135deg, #f8fbff 0%, var(--bg-color) 100%);
     color: var(--text-color);
     padding-bottom: 50px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "Work in Progress — This is not the final product";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: rgba(231, 76, 60, 0.25);
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 999;
+    white-space: nowrap;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
 }
 
 .container {
     max-width: 1000px;
     margin: 20px auto;
-    padding: 20px;
-    background: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 24px;
+    background: linear-gradient(145deg, #ffffff, #f8fbff);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(44, 62, 80, 0.08);
+    border: 1px solid rgba(52, 152, 219, 0.12);
 }
 
 /* --- Header y Navegación --- */
 .main-header {
-    background-color: var(--white);
+    background: linear-gradient(90deg, #ffffff 0%, #f4f9ff 100%);
     padding: 1rem 20px;
     border-bottom: 2px solid var(--secondary-color);
+    box-shadow: 0 4px 14px rgba(44, 62, 80, 0.08);
 }
 
 .header-container {
@@ -78,15 +104,59 @@ tr:hover {
 
 /* --- Botones y utilidades --- */
 .btn {
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 10px 14px;
+    border-radius: 8px;
     text-decoration: none;
     display: inline-block;
     color: white;
+    box-shadow: 0 6px 14px rgba(52, 152, 219, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(52, 152, 219, 0.22);
 }
 
 .btn-primary { background-color: var(--secondary-color); }
 .btn-danger { background-color: var(--danger-color); }
+.card {
+    background: linear-gradient(145deg, #ffffff, #f8fbff);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(44, 62, 80, 0.08);
+    border: 1px solid rgba(52, 152, 219, 0.12);
+}
+.form-group {
+    margin-bottom: 14px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #dbe4f0;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.alert-success {
+    color: #166534;
+    background: #dcfce7;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+.alert-error {
+    color: #991b1b;
+    background: #fee2e2;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
 
 .header-actions {
     display: flex;
@@ -112,6 +182,61 @@ td a {
 td a:hover {
     text-decoration: underline;
 }
+
+/* --- Estilos para inventario --- */
+#tablaInventario {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+#tablaInventario thead th {
+    background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+    color: var(--white);
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+#tablaInventario tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: var(--white);
+}
+
+#tablaInventario tbody tr:nth-child(even) td {
+    background-color: #f8fafc;
+}
+
+#tablaInventario tbody tr:hover td {
+    background-color: #eaf4ff;
+}
+
+#tablaInventario tbody td:last-child {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+#tablaInventario tbody td:first-child {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.form-card a {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-card a:hover {
+    text-decoration: underline;
+}
+
 /* Estilos específicos para el Dashboard */
 .dashboard-body {
     background-color: #f4f7f6;
@@ -179,12 +304,13 @@ td a:hover {
 }
 
 .form-card {
-    background: white;
+    background: linear-gradient(145deg, #ffffff, #f8fbff);
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(44, 62, 80, 0.10);
     width: 100%;
-    max-width: 400px;
+    max-width: 440px;
+    border: 1px solid rgba(52, 152, 219, 0.12);
 }
 
 .form-group {
@@ -208,14 +334,123 @@ td a:hover {
 button {
     width: 100%;
     padding: 1rem;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
+    box-shadow: 0 8px 18px rgba(52, 152, 219, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(52, 152, 219, 0.25);
 }
 
 button:disabled {
     background-color: #ccc;
+}
+/* Contenedor principal que centra las tarjetas de formularios */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+/* Tarjeta contenedora del formulario */
+.form-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-card h2 {
+    margin-bottom: 20px;
+    color: #333333;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Agrupación de cada campo */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Entradas de texto y números */
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card input[type="email"],
+.form-card input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.form-card input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Botón de envío */
+.form-card button[type="submit"] {
+    width: 100%;
+    padding: 11px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.form-card button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.form-card button[type="submit"]:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Mensajes dinámicos y enlaces de retorno */
+#mensaje {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-card a {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.form-card a:hover {
+    text-decoration: underline;
 }
